@@ -31,4 +31,4 @@ const turistaSchema = new mongoose.Schema({
     timestamps: true,
 })
 
-module.exports = mongoose.model("turista", turistaSchema);
+module.exports = mongoose.model("Turista", turistaSchema);
