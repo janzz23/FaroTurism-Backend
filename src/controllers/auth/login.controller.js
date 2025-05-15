@@ -38,5 +38,16 @@ const login = async (req, res) => {
         res.status(500).json({ message: "Error al iniciar sesión" });
     }
 
+
 }
 
+
+const cerrarSesion = async (req, res) => {
+
+}
+
+
+module.exports = {
+    login,
+    cerrarSesion
+}   

@@ -1,12 +1,13 @@
 const express = require('express');
 const app = express();
-
-
 const cors = require('cors');
 
-// Habilita CORS (Cross-Origin Resource Sharing) para permitir
-// peticiones desde el frontend alojado en http://localhost:8000
-server.use(
+const authRouter = require("./routes/auth.routes.js")
+
+
+
+
+app.use(
     cors({
         origin: "http://localhost:4200", // Solo permite solicitudes desde esta URL
         credentials: true,
@@ -16,6 +17,8 @@ server.use(
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
+
+app.use("/app", authRouter); // Ruta para la autenticación
 require("./bd.js")(); // Conexión a la base de datos
 
 
