@@ -7,7 +7,7 @@ const turistaSchema = new mongoose.Schema({
     numeroTelefono: { type: String, required: true, unique: true },
     email: { type: String, required: true, unique: true },
     password: { type: String, required: true },
-    idiomasHablados: {
+    idiomasHablados: [{
         type: String,
         required: true,
         enum: [
@@ -19,8 +19,8 @@ const turistaSchema = new mongoose.Schema({
             "Mandarin",
             "Japones"
         ]
-    },
-    Nacionalidad: {
+    }],
+    nacionalidad: {
         type: String,
         required: true,
 
