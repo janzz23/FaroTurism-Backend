@@ -5,7 +5,7 @@ const { JWT_SECRET } = process.env;
 
 function generateToken(user) {
     return new Promise((resolve, reject) => {
-        jwt.sign(user, SECRET, {
+        jwt.sign(user, JWT_SECRET , {
             expiresIn: 1000,
         },
             (err, token) => {

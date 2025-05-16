@@ -2,7 +2,7 @@ const Turista = require("../../models/turista")
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 const { JWT_SECRET } = process.env;
-const { generarToken } = require("../../libs/jwt/jwt")
+const { generateToken } = require("../../libs/jwt/jwt")
 
 const login = async (req, res) => {
     const { email, password } = req.body;
@@ -19,7 +19,7 @@ const login = async (req, res) => {
         if (!passwordValido) {
             return res.status(401).json({ message: "Contraseña incorrecta" });
         }
-        const token = await generarToken({ id: turista._id })
+        const token = await generateToken({ id: turista._id })
 
         res.status(200).json({
             token: token,
