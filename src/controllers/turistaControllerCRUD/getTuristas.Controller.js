@@ -1,4 +1,4 @@
-const turista = require("../../models/Turista");
+
 const Turista = require("../../models/Turista")
 
 const getTuristas = async (req, res) => {

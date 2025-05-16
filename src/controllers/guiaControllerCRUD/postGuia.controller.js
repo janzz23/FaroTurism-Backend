@@ -18,10 +18,7 @@ const postGuia = async (req, res) => {
 
     try {
 
-        /*
-  identificacion: { type: String, required: true, unique: true },
-    numeroContacto: { type: String, required: true, unique: true },
-*/
+
         const encontrarGuiaPorIdentificacion = await Guia.findOne({ identificacion });
         const encontrarGuiaPorNumeroContacto = await Guia.findOne({ numeroContacto });
 
@@ -45,7 +42,7 @@ const postGuia = async (req, res) => {
             idiomasHablados,
             fotoPerfil, // URL o base64
             costoHora,
-            beneficiosAdicionale
+            beneficiosAdicionales
         })
 
         const guiaGuardado = nuevoGuia.save();
