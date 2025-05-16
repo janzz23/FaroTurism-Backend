@@ -1,5 +1,5 @@
-const turista = require("../../models/turista");
-const Turista = require("../../models/turista")
+const turista = require("../../models/Turista");
+const Turista = require("../../models/Turista")
 
 const getTuristas = async (req, res) => {
 

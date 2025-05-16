@@ -1,4 +1,4 @@
-const Turista = require("../../models/turista")
+const Turista = require("../../models/Turista")
 
 const bcrypt = require("bcrypt");
 const { generateToken } = require("../../libs/jwt/jwt")

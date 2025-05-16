@@ -1,5 +1,5 @@
 
-const Turista = require("../../models/turista");
+const Turista = require("../../models/Turista");
 
 const deleteTurista = async (req, res) => {
 
