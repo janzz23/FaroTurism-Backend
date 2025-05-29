@@ -20,7 +20,7 @@ const login = async (req, res) => {
             return res.status(401).json({ message: "Contraseña incorrecta" });
         }
         const token = await generateToken({ id: turista._id })
-
+        res.cookie("token", token);
         res.status(200).json({
             token: token,
             message: "Inicio de sesión exitoso",
@@ -42,12 +42,34 @@ const login = async (req, res) => {
 }
 
 
-const cerrarSesion = async (req, res) => {
+const logout = (req, res) => {
+    // Limpia la cookie en el servidor
+    res.clearCookie('token', {
+        path: '/',
+        // si marcaste httpOnly/token secure, aquí debes repetir esas opciones
+    });
 
-}
+    // Envía un JSON con tu mensaje
+    return res
+        .status(200)
+        .json({ message: 'Sesión cerrada correctamente' });
+};
+
+const profile = async (req, res) => {
+    const userFound = await Turista.findById(req.turista.id);
+    if (!userFound) {
+        return res.status(400).json({ message: "Usuario no encontrado" });
+    }
+
+    res.json({
+        userfound: userFound
+    });
+};
+
+
 
 
 module.exports = {
     login,
-    cerrarSesion
+    logout, profile
 }   

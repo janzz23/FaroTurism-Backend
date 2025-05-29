@@ -5,8 +5,10 @@ const cors = require('cors');
 const authRouter = require("./routes/auth.routes.js")
 
 const turistaRouter = require("./routes/turista.routes.js")
-
+const cookieParser = require("cookie-parser");
 const guiaRoutes = require("./routes/guia.routes.js")
+const routerReserva = require("./routes/reserva.routes.js")
+
 
 app.use(
     cors({
@@ -17,11 +19,14 @@ app.use(
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
-
+// Habilita el manejo de cookies en las solicitudes HTTP
+app.use(cookieParser());
 
 app.use("/app", authRouter); // Ruta para la autenticación
 app.use("/app", turistaRouter)
 app.use("/app", guiaRoutes)
+app.use("/app", routerReserva)
+
 require("./bd.js"); // Conexión a la base de datos
 
 

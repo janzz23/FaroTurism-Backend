@@ -11,13 +11,13 @@ const turistaSchema = new mongoose.Schema({
         type: String,
         required: true,
         enum: [
-            "Ingles",
-            "Español",
-            "Portugues ",
-            "Frances",
-            "Aleman",
-            "Mandarin",
-            "Japones"
+            'Inglés',
+            'Español',
+            'Portugués',
+            'Francés',
+            'Alemán',
+            'Mandarín',
+            'Japonés'
         ]
     }],
     nacionalidad: {
