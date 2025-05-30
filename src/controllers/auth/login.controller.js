@@ -67,9 +67,25 @@ const profile = async (req, res) => {
 };
 
 
+const verifyToken = async (req, res) => {
+    const { token } = req.cookies;
+    if (!token) return res.status(400).json({ message: "No autirizado" });
+    jwt.verify(token, SECRET, async (err, Turista) => {
+        if (err) return res.status(401).json({ message: "No autirizado" });
+        const userFound = await Turista.findById(user.id);
+
+        if (!userFound) return res.status(401).json({ message: "No autirizado" });
+
+        res.json({
+            userFound
+        });
+    });
+};
 
 
 module.exports = {
     login,
-    logout, profile
+    logout,
+    profile,
+    verifyToken
 }   
