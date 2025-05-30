@@ -1,7 +1,7 @@
 const Turista = require("../../models/Turista")
 
 const bcrypt = require("bcrypt");
-const { generateToken } = require("../../libs/jwt/jwt")
+const { createAccessToken } = require("../../libs/jwt/jwt")
 
 const register = async (req, res) => {
 
@@ -40,7 +40,8 @@ const register = async (req, res) => {
         })
 
         const turistaGuardado = await nuevoTurista.save();
-        const token = await generateToken({ id: turistaGuardado._id })
+        const token = await createAccessToken({ id: turistaGuardado._id });
+        res.cookie("token", token, { httpOnly: true });
         res.status(201).json({
             token: token,
             message: "Turista registrado correctamente",

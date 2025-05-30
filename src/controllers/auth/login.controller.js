@@ -2,7 +2,7 @@ const Turista = require("../../models/Turista")
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 const { JWT_SECRET } = process.env;
-const { generateToken } = require("../../libs/jwt/jwt")
+const { createAccessToken } = require("../../libs/jwt/jwt")
 
 const login = async (req, res) => {
     const { email, password } = req.body;
@@ -19,8 +19,12 @@ const login = async (req, res) => {
         if (!passwordValido) {
             return res.status(401).json({ message: "Contraseña incorrecta" });
         }
-        const token = await generateToken({ id: turista._id })
-        res.cookie("token", token);
+        const token = await createAccessToken({ id: turista._id });
+        res.cookie("token", token, {
+            httpOnly: true,
+            secure: true, // Solo si estás usando HTTPS
+            sameSite: 'None', // Necesario para que funcione en diferentes dominios
+        });
         res.status(200).json({
             token: token,
             message: "Inicio de sesión exitoso",
@@ -70,7 +74,7 @@ const profile = async (req, res) => {
 const verifyToken = async (req, res) => {
     const { token } = req.cookies;
     if (!token) return res.status(400).json({ message: "No autirizado" });
-    jwt.verify(token, SECRET, async (err, Turista) => {
+    jwt.verify(token, JWT_SECRET, async (err, user) => {
         if (err) return res.status(401).json({ message: "No autirizado" });
         const userFound = await Turista.findById(user.id);
 

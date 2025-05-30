@@ -9,7 +9,6 @@ exports.crearReserva = async (req, res) => {
             fechaReserva,
             horaInicio,
             duracionHoras,
-            estado,
             lugarEncuentro,
             notasAdicionales
         } = req.body;
@@ -32,7 +31,7 @@ exports.crearReserva = async (req, res) => {
             horaInicio,
             duracionHoras,
             costoTotal,
-            estado, // opcional, si no se envía, tomará el valor por defecto: "pendiente"
+             // opcional, si no se envía, tomará el valor por defecto: "pendiente"
             lugarEncuentro,
             notasAdicionales
         });

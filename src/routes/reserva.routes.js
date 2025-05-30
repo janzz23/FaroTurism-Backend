@@ -7,8 +7,8 @@ const { obtenerReservas, obtenerReservaPorId } = require("../controllers/reserva
 
 const { crearReserva } = require("../controllers/reserva/createReserva")
 
-routerReserva.get("/getGuias", obtenerReservas);
-routerReserva.get("/getGuias/:id", obtenerReservaPorId)
+routerReserva.get("/getReservas", obtenerReservas);
+routerReserva.get("/getReserva/:id", obtenerReservaPorId)
 
 routerReserva.post("/crearReserva", crearReserva);
 

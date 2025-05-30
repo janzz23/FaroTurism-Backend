@@ -8,7 +8,8 @@ const turistaRouter = require("./routes/turista.routes.js")
 const cookieParser = require("cookie-parser");
 const guiaRoutes = require("./routes/guia.routes.js")
 const routerReserva = require("./routes/reserva.routes.js")
-
+//morgan para las peticiones
+const morgan = require("morgan");
 
 app.use(
     cors({
@@ -21,7 +22,7 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 // Habilita el manejo de cookies en las solicitudes HTTP
 app.use(cookieParser());
-
+app.use(morgan("dev"));
 app.use("/app", authRouter); // Ruta para la autenticación
 app.use("/app", turistaRouter)
 app.use("/app", guiaRoutes)
